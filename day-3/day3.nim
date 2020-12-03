@@ -14,8 +14,6 @@ proc countTrees(lines: openArray[string], dx, dy: int): int =
         y += dy
         x = (x + dx) %% width
 
-
-
 proc part1(lines: openArray[string]): int =
     return lines.countTrees(dx = 3, dy = 1)
 
