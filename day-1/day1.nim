@@ -1,3 +1,4 @@
+#!/usr/bin/env nim r
 import sequtils
 import strutils
 
