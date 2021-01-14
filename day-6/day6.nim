@@ -6,13 +6,16 @@ import sugar
 let entireFile = readFile("input.txt")
 let groups = entireFile.strip().split("\n\n")
 
-proc getQuestionSet(group: string, op: (HashSet[char], HashSet[char]) -> HashSet[char]): HashSet[char] =
+type
+    charSet = HashSet[char]
+
+proc getQuestionSet(group: string, op: (charSet, charSet) -> charSet): charSet =
     let lines = group.splitLines
     return lines.map((x) => x.toHashSet).foldl(op(a, b))
 
 let questionSets = groups.map((x) => x.getQuestionSet(union))
 
-proc getSum(qs: seq[HashSet[char]]): int =
+proc getSum(qs: seq[charSet]): int =
     return qs.foldl(a + b.card, 0)
 
 echo "The answer to part1 is ", getSum(questionSets)
